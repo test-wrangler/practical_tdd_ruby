@@ -50,7 +50,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem "spring-commands-rspec", "~> 1.0"
-  gem "guard-rspec", "~> 4.7"
+  gem "guard-rspec", "~> 4.7", require: false
 end
 
 group :test do
