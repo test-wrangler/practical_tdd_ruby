@@ -12,8 +12,6 @@ class Cart < ApplicationRecord
 
   private
   def allergic?(user, taco)
-    taco_ingredients = taco.ingredients.split(',')
-    allergies = user.allergies.split(',')
-    (taco_ingredients & allergies).present?
+    (taco.ingredients & user.allergies).present?
   end
 end
