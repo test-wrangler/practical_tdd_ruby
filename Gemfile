@@ -62,7 +62,10 @@ group :test do
   gem "rspec-rails", "~> 3.8"
   gem "factory_bot_rails", "~> 5.0"
   gem "pry-byebug", "~> 3.7"
+  gem "launchy", "~> 2.4"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem "bootstrap-sass", "~> 3.4"
