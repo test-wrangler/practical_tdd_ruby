@@ -9,11 +9,11 @@ RSpec.describe Cart do
       taco = Taco.create!(ingredients: [flour])
       cart = Cart.create!
 
-      cart.tacos = [taco]
+      cart.menu_items = [taco]
       cart.save
       cart.reload
       
-      expect(cart.tacos).to include(taco)
+      expect(cart.menu_items).to include(taco)
     end
 
     it "prevents adding a taco to the cart that the user is allergic to" do
@@ -23,13 +23,12 @@ RSpec.describe Cart do
       taco = Taco.create!(name: taco_name, ingredients: [sour_cream])
       cart = Cart.create!
 
-      cart.tacos = [taco]
+      cart.menu_items = [taco]
       cart.save
       cart.reload
 
-      expect(cart.tacos).to include(taco)
-
-      expect(cart.errors.first).to eq([:tacos, "User is allergic to #{taco_name} taco"])
+      expect(cart.menu_items).to include(taco)
+      expect(cart.errors.first).to eq([:menu_items, "User is allergic to #{taco_name} menu item"])
     end
   end
 end

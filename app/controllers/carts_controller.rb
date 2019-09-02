@@ -7,6 +7,6 @@ class CartsController < ApplicationController
   end
 
   def cart_params
-    params.require(:cart).permit(taco_ids: [])
+    params.require(:cart).permit(menu_item_ids: [])
   end
 end
