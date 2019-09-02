@@ -8,10 +8,10 @@ RSpec.describe 'Adding tacos to the cart' do
     second_taco = Taco.create
     cart = Cart.create
 
-    patch cart_path(cart), params: { cart: { taco_ids: [first_taco.id, second_taco.id] } }
+    patch cart_path(cart), params: { cart: { menu_item_ids: [first_taco.id, second_taco.id] } }
     cart.reload
 
-    expect(cart.tacos.length).to eq(2)
+    expect(cart.menu_items.length).to eq(2)
   end
 
   it 'prevents tacos with allergens from being added to the cart' do
@@ -20,8 +20,8 @@ RSpec.describe 'Adding tacos to the cart' do
     first_taco = Taco.create(ingredients: [sour_cream])
     cart = Cart.create
 
-    patch cart_path(cart), params: { cart: { taco_ids: [first_taco.id] } }
+    patch cart_path(cart), params: { cart: { menu_item_ids: [first_taco.id] } }
 
-    expect(cart.tacos.length).to eq(0)
+    expect(cart.menu_items.length).to eq(0)
   end
 end

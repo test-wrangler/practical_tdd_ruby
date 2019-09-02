@@ -4,9 +4,9 @@
   <% end %>
 </ul>
 <%= form_for @cart do |f| %>
-  <h1>Tacos</h1>
-  <%= f.collection_check_boxes(:taco_ids, Taco.all, :id, :name, include_hidden: false) do |b| %>
-    <div class="Home--Taco">
+  <h1>Menu Items</h1>
+  <%= f.collection_check_boxes(:menu_item_ids, MenuItem.all, :id, :name, include_hidden: false) do |b| %>
+    <div class="Home--MenuItem">
       <%= b.label("data-value": b.value) { b.check_box + b.text } %>
     </div>
   <% end %>

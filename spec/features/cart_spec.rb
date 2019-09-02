@@ -28,6 +28,6 @@ RSpec.describe "Adding tacos to the cart" do
     click_button "Update Cart"
 
     expect(page).to have_no_checked_field(first_taco.name)
-    expect(page).to have_text("User is allergic to #{taco_name} taco")
+    expect(page).to have_text("User is allergic to #{taco_name} menu item")
   end
 end

@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Cart do
   describe "#add" do
-    xit "adds a taco to the cart when it doesn't contain ingredients that the user is allergic to" do
+    it "adds a taco to the cart when it doesn't contain ingredients that the user is allergic to" do
       sour_cream = Ingredient.create(name: 'Sour Cream')
       flour = Ingredient.create(name: 'Flour')
       user = User.create(allergies: [sour_cream])
@@ -16,7 +16,7 @@ RSpec.describe Cart do
       expect(cart.menu_items).to include(taco)
     end
 
-    xit "prevents adding a taco to the cart that the user is allergic to" do
+    it "prevents adding a taco to the cart that the user is allergic to" do
       sour_cream = Ingredient.create(name: 'Sour Cream')
       user = User.create(allergies: [sour_cream])
       taco_name = 'Steak and Shrimp'
@@ -28,8 +28,7 @@ RSpec.describe Cart do
       cart.reload
 
       expect(cart.menu_items).to include(taco)
-
-      expect(cart.errors.first).to eq([:menu_items, "User is allergic to #{taco_name} taco"])
+      expect(cart.errors.first).to eq([:menu_items, "User is allergic to #{taco_name} menu item"])
     end
   end
 end
