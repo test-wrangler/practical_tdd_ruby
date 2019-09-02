@@ -42,6 +42,7 @@ group :development, :test do
   gem "rspec-rails", "~> 3.8"
   gem "pry-byebug", "~> 3.7"
   gem "launchy", "~> 2.4"
+  gem "rspec_junit_formatter", "~> 0.4.1"
 end
 
 group :development do
