@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.Home--Taco {
+  display: block;
+
+  label > input {
+    margin-right: 5px;
+  }
+}
