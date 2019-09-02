@@ -1,6 +1,9 @@
 class CartsController < ApplicationController
   def update
-    Cart.first.update(cart_params)
+    @cart = Cart.first
+    @cart.update(cart_params)
+    @cart.reload
+    render "home/index"
   end
 
   def cart_params
