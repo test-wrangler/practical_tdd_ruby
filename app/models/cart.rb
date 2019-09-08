@@ -10,6 +10,11 @@ class Cart < ApplicationRecord
     end
   end
 
+  def total
+    return 0.00 if menu_items.empty?
+    menu_items.collect(&:price).reduce(&:+) / 100.00
+  end
+
   private
   def allergic?(user, menu_item)
     (menu_item.ingredients & user.allergies).present?
