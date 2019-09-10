@@ -4,10 +4,10 @@ RSpec.describe "Adding tacos to the cart" do
   include ActionView::Helpers::NumberHelper
 
   it "adds tacos to the cart" do
-    user = User.create!
-    first_taco = Taco.create!(name: 'Steak', price: 123)
-    second_taco = Taco.create!(name: 'Shrimp', price: 456)
-    cart = Cart.create!
+    user = create(:user)
+    first_taco = create(:taco, name: 'Steak', price: 123)
+    second_taco = create(:taco, name: 'Shrimp', price: 456)
+    cart = create(:cart)
 
     visit "/"
     check first_taco.name
@@ -19,11 +19,11 @@ RSpec.describe "Adding tacos to the cart" do
   end
 
   it "prevents adding tacos that the user is allergic to" do
-    sour_cream = Ingredient.create!(name: "Sour Cream")
-    User.create!(allergies: [sour_cream])
+    sour_cream = create(:ingredient, name: "Sour Cream")
+    create(:user, allergies: [sour_cream])
     taco_name = "Steak"
-    first_taco = Taco.create!(name: taco_name, ingredients: [sour_cream])
-    Cart.create!
+    first_taco = create(:taco, name: taco_name, ingredients: [sour_cream])
+    create(:cart)
 
     visit "/"
     check first_taco.name
@@ -34,10 +34,10 @@ RSpec.describe "Adding tacos to the cart" do
   end
 
   it "calculates the total for the tacos that the user has added to their cart", js: true do
-    user = User.create
-    first_taco = Taco.create!(name: 'Steak', price: 1099)
-    second_taco = Taco.create!(name: 'Shrimp', price: 1199)
-    Cart.create
+    user = create(:user)
+    first_taco = create(:taco, name: 'Steak', price: 1099)
+    second_taco = create(:taco, name: 'Shrimp', price: 1199)
+    create(:cart)
 
     visit "/"
     expect(page).to have_text(format_price(0))

@@ -8,6 +8,6 @@
 
 if Rails.env.development?
   Cart.create!
-  Taco.create!(name: 'Steak')
-  Taco.create!(name: 'Shrimp')
+  Taco.create!(name: 'Steak', price: 1099)
+  Taco.create!(name: 'Shrimp', price: 1199)
 end

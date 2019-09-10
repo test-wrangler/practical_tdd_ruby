@@ -4,11 +4,11 @@ RSpec.describe 'Adding tacos to the cart' do
   include ActionView::Helpers::NumberHelper
 
   it 'adds tacos to the cart' do
-    sour_cream = Ingredient.create!
-    User.create!(allergies: [sour_cream])
-    first_taco = Taco.create!(price: 123)
-    second_taco = Taco.create!(price: 123)
-    cart = Cart.create!
+    sour_cream = create(:ingredient)
+    create(:user, allergies: [sour_cream])
+    first_taco = create(:taco, price: 123)
+    second_taco = create(:taco, price: 123)
+    cart = create(:cart)
 
     patch cart_path(cart), params: { cart: { menu_item_ids: [first_taco.id, second_taco.id] } }
     cart.reload
@@ -17,10 +17,10 @@ RSpec.describe 'Adding tacos to the cart' do
   end
 
   it 'prevents tacos with allergens from being added to the cart' do
-    sour_cream = Ingredient.create!
-    User.create!(allergies: [sour_cream])
-    first_taco = Taco.create!(ingredients: [sour_cream])
-    cart = Cart.create!
+    sour_cream = create(:ingredient)
+    create(:user, allergies: [sour_cream])
+    first_taco = create(:taco, ingredients: [sour_cream])
+    cart = create(:cart)
 
     patch cart_path(cart), params: { cart: { menu_item_ids: [first_taco.id] } }
 
@@ -28,10 +28,10 @@ RSpec.describe 'Adding tacos to the cart' do
   end
 
   it "calculates the total for the tacos that the user has added to their cart" do
-    first_taco = Taco.create!(name: 'Steak', price: 123)
-    second_taco = Taco.create!(name: 'Shirmp', price: 456)
-    cart = Cart.create!
-    user = User.create!
+    first_taco = create(:taco, name: 'Steak', price: 123)
+    second_taco = create(:taco, name: 'Shirmp', price: 456)
+    cart = create(:cart)
+    user = create(:user)
 
     patch cart_path(cart), params: { cart: { menu_item_ids: [first_taco.id, second_taco.id] } }
     get root_path
@@ -41,8 +41,8 @@ RSpec.describe 'Adding tacos to the cart' do
   end
 
   it "displays the price as $0 when the user hasn't added any tacos to their cart" do
-    cart = Cart.create!
-    user = User.create!
+    cart = create(:cart)
+    user = create(:user)
 
     get root_path
 
