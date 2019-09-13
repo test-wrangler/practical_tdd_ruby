@@ -45,7 +45,7 @@ RSpec.describe "Adding tacos to the cart" do
     check second_taco.name
     click_button "Update Cart"
 
-    expect(page).to have_text(format_price(first_taco.price + second_taco.price))
+    expect(page).to have_text(format_price(first_taco.price + second_taco.price - user.discount))
   end
 
   def format_price(price)

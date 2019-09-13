@@ -12,7 +12,8 @@ class Cart < ApplicationRecord
 
   def total
     return 0.00 if menu_items.empty?
-    menu_items.collect(&:price).reduce(&:+) / 100.00
+    sum = menu_items.collect(&:price).reduce(&:+) - User.first.discount
+    sum / 100.00
   end
 
   private
