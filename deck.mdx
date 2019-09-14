@@ -1,0 +1,285 @@
+# Practical Test Driven Ruby
+
+---
+
+# Overview
+
+- The problem with TDD.
+- A practical approach to TDD.
+- Start with an inside-out approach and learn what we need along the way.
+- Transition to an outside-in approach.
+
+---
+
+# About Me
+
+- Software consultant.
+- Obsessed with testing.
+
+---
+
+# Workshop Overview
+
+- Plain Rails app.
+- Learn by building a taco order app.
+- Going to work through a series of exercises.
+- Might work through the examples together if time becomes a problem.
+- Exercise branch and solution branch for each exercise. e.g. `exercise_1` and `solution_1`.
+- Open the solution and keep it for reference if you get stuck.
+- Run `bundle exec guard` to get a test watcher going.
+
+---
+
+# 01: Intro to TDD
+
+- The process of using tests to drive the development of your system.
+- Red, green, refactor.
+- Benefits: confidence and feedback loop. (Not design IMO.)
+
+---
+
+# 01: Exercise
+
+---
+
+# 01: Recap
+
+- Red, green, refactor.
+- Confidence and feedback loop.
+- Don't always have to take such small baby steps.
+
+---
+
+# 02: Unit Test Intro
+
+- Inside-out vs outside-in.
+- Inside-out: Unit -> Integration -> Feature.
+- Outside-in: Feature -> Integration -> Unit.
+- Unit test: Tests a single unit.
+- Solitary vs sociable (Martin Fowler).
+- Test pyramid.
+- Mocking.
+- Using stubs instead of test doubles.
+- Focusing a test.
+
+---
+
+# 02: Exercise
+
+---
+
+# 02: Recap
+
+- Solitary vs sociable unit tests.
+- Test pyramid.
+- Mocking.
+
+---
+
+# 03: False Reality
+
+- The problem with mocking / stubbing / test doubles.
+
+---
+
+# 03: Exercise
+
+---
+
+# 03: Recap
+
+- Mocking
+  - Benefits: Defect localization, speed, setup.
+  - Cons: False reality, brittle tests, refactoring.
+- Whitebox vs blackbox.
+- Blackbox > whitebox.
+- The more your tests resemble your user, the more confidence they can give you. ~ Kent Dodds.
+
+---
+
+# 04: Practical Unit Tests
+
+- What makes practical unit tests?
+- Unit tests that don't use mocking / test doubles.
+  - Exceptions: Interacting with 3rd party APIs or things like that.
+- Benefits: Increased confidence and feedback loop.
+- Robust tests > defect localization.
+
+---
+
+# 04: Exercise
+
+---
+
+# 04: Recap
+
+- Improved our confidence by making our tests more realistic.
+- Avoid mocking if at all possible.
+- Robust tests > defect localization.
+
+---
+
+# 05: Integration Test Intro
+
+- Integration test: Test that exercise the functionality of two or more units together.
+- Benefits: Increased confidence over a unit test.
+- My opinion: Should be the majority of your test suite.
+- "Write tests. Not too many. Mostly integration." ~ Guillermo Rauch
+
+---
+
+# 05: Exercise
+
+---
+
+# 05: Recap
+
+- Definition of an integration test.
+- Focus most of your testing effort on integration tests.
+
+---
+
+# 06: Testing Like Your User
+
+- Feature test: Tests the application like your user.
+- Benefits: Confidence.
+- Drawbacks: Slow.
+
+---
+
+# 06: Exercise
+
+---
+
+# 06: Recap
+
+- Feature tests test the app like your user.
+- Gives us the most confidence.
+- Slow to run.
+
+---
+
+# 07: Tradeoffs
+
+- Finished the inside-out approach.
+- Going to look at some tradeoffs.
+- Unit tests are a form of white box testing.
+
+---
+
+# 07: Exercise
+
+---
+
+# 07: Recap
+
+- Inside-out without mocking can be good, but it has some tradeoffs.
+- Not as much confidence.
+- Might have to change your tests when refactoring.
+
+---
+
+# 08: Outside-in
+
+- Step back and think: What do we really care about when building an application?
+- That it works the way the user expects it to.
+- Green tests don't matter if the application doesn't work for the user.
+- The goal: Test things like the user.
+- Outside-in: Feature -> Integration -> Unit.
+- My approach: Feature -> Integration -> (Maybe) Unit.
+- Would be amazing if we could use feature tests to drive development.
+- But Javascript.
+- Solution: Write feature tests for confidence and use integration tests to flesh out functionality for a quick feedback loop.
+
+---
+
+# 08: Exercise
+
+---
+
+# 08: Recap
+
+- Goal: Test things like our users.
+- Would be awesome if we could use feature tests. But Javascript.
+- Write feature tests and then use integration tests for a quick feedback loop.
+- Practical approach to TDD, from my experience.
+
+---
+
+# 09: Factories
+
+- When writing tests at a higher level, building API for your tests is important.
+- Otherwise, you end up with a lot of duplication.
+- Once you build an API, building tests is like building with legos.
+- Factories are one of the best ways to do that.
+- Factory: Encapsulates knowledge of how to setup different objects in your system.
+- Factory Bot.
+
+---
+
+# 09: Exercise
+
+---
+
+# 09: Recap
+
+- Having an API for your tests is important when testing at a higher level to avoid duplication.
+- Once you have an API, it's like legos.
+- Factories are usually low hanging fruit here.
+- Factories encapsulate knowledge of how to setup different objects in your system.
+- Factory Bot.
+
+---
+
+# 10: Scenarios
+
+- The hardtest part of this approach (after speed): Dealing with combinatorial explosion.
+- Combinatorial explosion: Rapid growth of the complexity of a problem.
+- i.e.: An explosion in the number of scenarios that we have to account for.
+- One of the arguments for mocking and inside-out TDD.
+- My experience: Trying to cover every edge case and scenario isn't practical.
+- Instead: Focus on the most likely cases and add tests as issues come up.
+- Locking everything down with mocks and an inside-out approach LIKE % "Lord Business trying to glue everything down."
+- Can't move or change anything. Refactoring is difficult.
+- Leads to TDD burnout.
+- Solution: Use tests that are as high level as possible and give you a quick feedback loop.
+
+---
+
+# 10: Exercise
+
+---
+
+# 10: Recap
+
+- Combinatorial explosion.
+- One of the biggest arguments for mockist / inside-out TDD.
+- Not practical.
+- Like Lord Business from the Lego movie. Can't move or change anything.
+- Makes refactoring difficult.
+- Leads to TDD burnout.
+- Solution: Use tests that are as high level as possible and give you a quick feedback loop.
+
+---
+
+# Implementing TDD on Your Team
+
+- Help others see the value of TDD.
+- Start with integration tests.
+- If that's all you can get, it will be a huge win.
+- Start small. Have a goal of adding or updating 1 test with each PR.
+- If you can get more, add feature tests. Big confidence.
+- Going to start publishing resources to help out with this.
+
+---
+
+# Helping Others see the Value of TDD
+
+---
+
+# Summary
+
+- Staying away from mocking / test doubles makes your tests far more practical.
+- You can use inside-out or outside-in. I recommend outside-in.
+- Write feature tests and then use integration tests to flesh out the functionality.
+- Build an API for your tests.
